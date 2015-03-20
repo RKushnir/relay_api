@@ -36,7 +36,7 @@ class ApisController < ApplicationController
   end
 
   def collect_fields(root, fields)
-    root.map do |obj|
+    result = Array.wrap(root).map do |obj|
       fields.each_with_object({}) do |field, agg|
         case field
         when String
@@ -46,5 +46,7 @@ class ApisController < ApplicationController
         end
       end
     end
+
+    root.respond_to?(:to_a) ? result : result.first
   end
 end
