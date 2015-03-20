@@ -8,7 +8,7 @@ class ApisController < ApplicationController
   end
 
   def comments
-    render_result Comments.all
+    render_result Comment.all
   end
 
   private
