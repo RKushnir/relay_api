@@ -1,11 +1,25 @@
 class ApisController < ApplicationController
   def show
-    fields = parse_fields(params.fetch(:fields))
-    users = User.all
-    render json: collect_fields(users, fields)
+    render_result User.all
+  end
+
+  def posts
+    render_result Post.all
+  end
+
+  def comments
+    render_result Comments.all
   end
 
   private
+
+  def render_result(root)
+    render json: collect_fields(root, fields)
+  end
+
+  def fields
+    parse_fields(params.fetch(:fields))
+  end
 
   def parse_fields(string)
     do_parse = ->(chars) do
