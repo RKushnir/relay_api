@@ -18,7 +18,7 @@ class ApisController < ApplicationController
   end
 
   def fields
-    parse_fields(params.fetch(:fields))
+    parse_fields(params.fetch(:fields, 'id'))
   end
 
   def parse_fields(string)
